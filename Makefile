@@ -8,19 +8,19 @@ output_file=ezRTOS
 obj_copy=arm-none-eabi-objcopy
 
 ifeq ($(arch), armv7m)
-	c_flags += -mthumb
+	cc_flags += -mthumb
 else
-	c_flags=
+	cc_flags=
 endif
 
 ifeq ($(is_stdlib), true)
-	c_flags +=
+	cc_flags +=
 else
-	c_flags += -nostdlib
+	cc_flags += -nostdlib
 endif
 
-c_flags += -Wall\
-		   -g
+c_flags = -Wall \
+		  -g
 
 c_sources += src/main.c\
 
@@ -44,7 +44,7 @@ $(warning "----------------------")
 $(warning "building startup asm files")
 $(warning "----------------------")
 startup.o:
-	$(cc) -c $(asm_sources) -o startup.o
+	$(cc)  $(cc_flags) $(c_flags) -c $(asm_sources) -o startup.o
 
 #-------------------------------------
 #  Build the c files to object files
@@ -54,7 +54,7 @@ $(warning "----------------------")
 $(warning "building all c source files")
 $(warning "----------------------")
 all_c_sources.o:
-	$(cc) -c $(c_sources) -o all_c_sources.o
+	$(cc) $(cc_flags) $(c_flags) -c $(c_sources) -o all_c_sources.o
 
 #-------------------------------------
 #  Build the all files to elf
@@ -64,7 +64,7 @@ $(warning "----------------------")
 $(warning "building eZRTOS elf")
 $(warning "----------------------")
 build_elf: all_c_sources.o startup.o
-	$(cc) -mcpu=$(cpu_name) $(c_flags)\
+	$(cc) -mcpu=$(cpu_name) $(cc_flags)\
 		-T $(link_sources) all_c_sources.o\
 		startup.o -o $(output_file).elf
 #-------------------------------------

@@ -1,6 +1,21 @@
+/**
+        File: STM32F103 Cortex M3 Startup Assembly file
+        Author: Venu Gopal Atchyutanna
+        Taken as reference from STM32 Cube IDE startup script
+ */
+  .syntax unified
+  .cpu cortex-m3 // cpu core is cortex m3
+  .fpu softvfp // use software floating point unit
+  .thumb  // uses thumb instruction set
+
 .section .vector_table, "a"
-.align 2
+
+/* global variable declaration for vector table */
 .global __vector_table
+
+/* Definition of the global array of function pointers
+   defined as per the ARM Cortex M3 technical reference manual
+*/
 __vector_table:
     .word _estack                    // Initial stack pointer
     .word Reset_Handler              // Reset handler
@@ -324,9 +339,10 @@ RTC_Alarm_IRQHandler:
 USBWakeUp_IRQHandler:
     b .
 
-// Reset handler
+// Reset handler global function
 .global Reset_Handler
 .type Reset_Handler, %function
+.thumb_func  // telling that this fucntion is thumb function
 Reset_Handler:
     // Copy data from flash to RAM
     ldr r0, =_sdata
@@ -335,11 +351,13 @@ Reset_Handler:
     movs r3, #0
     b LoopCopyDataInit
 
+.thumb_func
 CopyDataInit:
     ldr r4, [r2, r3]
     str r4, [r0, r3]
     add r3, r3, #4
 
+.thumb_func
 LoopCopyDataInit:
     add r4, r0, r3
     cmp r4, r1
@@ -351,10 +369,12 @@ LoopCopyDataInit:
     movs r3, #0
     b LoopFillZerobss
 
+.thumb_func
 FillZerobss:
     str r3, [r2]
     add r2, r2, #4
 
+.thumb_func
 LoopFillZerobss:
     cmp r2, r4
     bcc FillZerobss

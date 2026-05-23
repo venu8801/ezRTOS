@@ -1,0 +1,28 @@
+Prerequisites:
+
+1. Make
+2. arm compiler tool chain for v7
+3. qemu emulator for emulating the binary
+4. linux machine to run all these
+
+
+Clone the repository:
+git clone https://github.com/venu8801/ezRTOS.git
+
+Build instructions:
+Run the following commands:
+
+make clean
+
+make build_ezRTOS
+
+To run the elf file in qemu use following command:
+
+qemu-system-arm -M stm32vldiscovery -S -gdb tcp::1234 -kernel ezRTOS.elf
+
+using any other terminal connect to multi-arch gdb using the above tcp port ID
+add break points and debug the code.
+
+
+Reach out to me if there are any queries:
+email: venu.ark.prasad@gmail.com
