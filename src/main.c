@@ -1,9 +1,15 @@
 
 #include <stdio.h>
 #include <stdbool.h>
+#include <ukernel.h>
 
 int main(void) {
-    // printf("Hello from STM32!\r\n");
+
+    ez_system_init();
+
+    ez_kernel_init();
+
+
     int i = 0;
     while(true) {
         i++;

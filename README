@@ -14,7 +14,7 @@ Run the following commands:
 
 make clean
 
-make build_ezRTOS
+make all
 
 To run the elf file in qemu use following command:
 
