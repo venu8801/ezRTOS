@@ -58,7 +58,7 @@ $(warning "----------------------")
 $(warning "building startup asm files")
 $(warning "----------------------")
 startup.o:
-	$(cc)  $(cc_flags) $(c_flags) -c $(asm_sources) -o startup.o
+	$(cc) -g $(cc_flags) $(c_flags) -c $(asm_sources) -o startup.o
 
 ez_uKernel_components:
 	$(MAKE) -C ez_uKernel ez_uKernel_components

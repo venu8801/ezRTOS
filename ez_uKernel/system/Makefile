@@ -5,7 +5,7 @@
 
 
 $(warning ---------------------------)
-$(warning --- compiling the kernel sources ---)
+$(warning --- compiling the kernel system component sources ---)
 
 c_system_sources += $(wildcard *c)
 
@@ -13,7 +13,7 @@ kernel_inc_dirs += ../inc
 
 
 compile_system_sources:
-	$(cc) $(cc_flags) $(c_flags) -I $(kernel_inc_dirs) -c $(c_system_sources) -o c_system_sources.o
+	$(cc) -c $(cc_flags) $(c_flags) -I $(kernel_inc_dirs) $(c_system_sources)
 
 
 clean:
