@@ -1,6 +1,6 @@
 /**
  * File: ez_kernel_main.c
- * Author: Venu Gopal Atchyutanna
+ * Author: Venu Gopal Atchyutanna @venu8801
  *
  * @brief: This file contains the entry points of
  * MCUs system initializations and kernel initializations
@@ -8,9 +8,14 @@
  * inside the bsp layer.
  */
 #include <ukernel.h>
+#include <ez_syscalls.h>
 
 void ez_kernel_init(void) {
     // not yet implemented
+    // ez_queue_init();
+    // ez_task_init();
+    // ez_memory_init();
+    uint8_t *ptr = kmalloc(3);
     return;
 }
 

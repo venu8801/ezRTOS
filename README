@@ -20,8 +20,39 @@ To run the elf file in qemu use following command:
 
 qemu-system-arm -M stm32vldiscovery -S -gdb tcp::1234 -kernel ezRTOS.elf
 
-using any other terminal connect to multi-arch gdb using the above tcp port ID
+✅ using any other terminal connect to multi-arch gdb using the above tcp port ID
 add break points and debug the code.
+
+✅ Launch gdb-multiarch
+gdb-multiarch ezRTOS.elf
+✅ Set architecture (important sometimes)
+
+For Cortex-M3:
+
+set architecture arm
+
+Sometimes GDB auto-detects from ELF correctly, but explicit setting is fine.
+
+✅ Connect to QEMU
+target remote :1234
+
+Now you are attached to:
+
+virtual ARM Cortex-M CPU
+inside QEMU.
+✅ Typical debugging flow
+break Reset_Handler
+continue
+
+Then:
+
+stepi
+
+or:
+
+info registers
+
+
 
 
 Reach out to me if there are any queries:
