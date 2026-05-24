@@ -5,17 +5,10 @@
  */
 
 
-#ifndef _U_KERNEL_H_
-#define  _U_KERNEL_H_
+#ifndef _U_SYSCALLS_H_
+#define  _U_SYSCALLS_H_
 #include <stdint.h>
 
+void *kmalloc(uint32_t alloc_size);
 
-void ez_kernel_init(void);
-
-void ez_system_init(void);
-
-
-
-#endif // _U_KERNEL_H_
-
-
+#endif // _U_SYSCALLS_H_

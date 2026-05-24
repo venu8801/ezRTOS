@@ -8,7 +8,7 @@
  * inside the bsp layer.
  */
 #include <ukernel.h>
-
+#include <ez_syscalls.h>
 
 void ez_kernel_init(void) {
     // not yet implemented
