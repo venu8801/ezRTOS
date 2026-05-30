@@ -10,11 +10,12 @@
 #include <ukernel.h>
 #include <ez_syscalls.h>
 
+
 void ez_kernel_init(void) {
     // not yet implemented
     // ez_queue_init();
     // ez_task_init();
-    // ez_memory_init();
+    ez_mem_init();
     uint8_t *ptr = kmalloc(3);
     return;
 }

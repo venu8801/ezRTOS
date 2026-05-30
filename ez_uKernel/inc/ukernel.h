@@ -14,7 +14,7 @@ void ez_kernel_init(void);
 
 void ez_system_init(void);
 
-
+void ez_mem_init(void);
 
 #endif // _U_KERNEL_H_
 
