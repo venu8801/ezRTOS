@@ -48,6 +48,25 @@ void put_generic_str(const char *str) {
     return;
 }
 
+void put_decimal(int32_t num) {
+    int8_t digit;
+    /* max of 10 byte char array
+    although signed integer string cannot be
+    more than 2^16 -1 on 32bit machines*/
+    char int_arr[10];
+    int temp = num;
+    int k = 0;
+    while (temp) {
+        digit = temp % 10;
+        char c_digit = digit + 48;
+        int_arr[k++] = c_digit;
+        temp = temp / 10;
+    }
+    while(k > 0) {
+        __usart_put_char(int_arr[--k], USART1);
+    }
+}
+
 int __memcpy(char *dst, char *src, size_t bytes) {
     int i;
     if (!dst || !src || (bytes <= 0))
@@ -81,7 +100,10 @@ int16_t __printk(const char *str, ...) {
                     __usart_put_char('x', USART1);
                     put_hex_addr(ptr);
                     break;
-
+                case 'd':
+                    int32_t decimal = va_arg(ap, int32_t);
+                    put_decimal(decimal);
+                    break;
                 default:
                     i++;
                     continue;

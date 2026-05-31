@@ -21,6 +21,7 @@ typedef struct heap_meta_data {
 typedef struct heap_chunk {
     ez_heap_meta_data_t heap_mdata;
     chunk_ptr ptr;
+    struct heap_chunk *next;
 } ez_heap_chunk_t;
 
 
