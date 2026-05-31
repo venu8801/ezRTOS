@@ -9,6 +9,7 @@
 #include <stddef.h>
 #include <ukernel_memory.h>
 
+
 void _exit(int pid) {
     (void)pid;
     while (1) {
@@ -44,6 +45,25 @@ void * _sbrk(uint32_t memory) {
 
 int _write(const char *ptr) {
     return 0;
+}
+
+void delay(void)
+{
+    volatile uint32_t i;
+
+    for(i = 0; i < 1000000; i++)
+    {
+        __asm volatile ("nop");
+    }
+}
+
+
+void __usleep(uint32_t msec)
+{
+    volatile uint64_t i;
+    for (i = 0; i < ((uint64_t)msec * 1000ULL); i++) {
+        __asm volatile ("nop");
+    }
 }
 
 int _close(int fd) {

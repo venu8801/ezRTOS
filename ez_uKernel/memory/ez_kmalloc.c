@@ -3,6 +3,7 @@
 #include <stdint.h>
 #include <stddef.h>
 #include <ukernel_memory.h>
+#include <ezlog.h>
 
 #ifdef GLOBAL_POOL_ALLOCATOR
 /* global array approach allocated in .bss and managed here */
@@ -28,6 +29,7 @@ void __ez_mem_init(void) {
     g_heap_info.curr_ptr = (uint8_t *)((uint32_t)&__ez_heap_start__);
     g_heap_info.max_heap_size = MAX_HEAP_SIZE;
     g_heap_info.__heap_region_start = g_heap_info.curr_ptr;
+    __printk("EZ MEM INIT successful returning");
     return;
 }
 
