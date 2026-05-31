@@ -3,3 +3,5 @@ all_c_sources.o
 ezRTOS.bin
 ezRTOS.elf
 startup.o
+cscope.out
+tags
