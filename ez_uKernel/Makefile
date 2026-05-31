@@ -30,13 +30,23 @@ ez_uKernel_tasks:
 clean_ez_uKernel_tasks:
 	$(MAKE) -C tasks clean
 
+#----------------logger component-------------
+ez_uKernel_logger:
+	$(MAKE) -C ezlog
+
+clean_ez_uKernel_logger:
+	$(MAKE) -C ezlog clean
+
+
 ez_uKernel_components: ez_uKernel_tasks\
 						ez_uKernel_queue\
 						ez_uKernel_memory\
-						ez_uKernel_system
+						ez_uKernel_system\
+						ez_uKernel_logger
 
 clean_ez_uKernel_components: \
 		clean_ez_uKernel_tasks\
 		clean_ez_uKernel_queue\
 		clean_ez_uKernel_memory\
-		clean_ez_uKernel_system
+		clean_ez_uKernel_system\
+		clean_ez_uKernel_logger

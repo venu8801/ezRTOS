@@ -9,14 +9,22 @@
  */
 #include <ukernel.h>
 #include <ez_syscalls.h>
-
+#include <uart.h>
+#include <stddef.h>
+#include <ezlog.h>
 
 void ez_kernel_init(void) {
+    ez_log("-----------EZ KERNEL INIT CALLED ---------------");
+    ez_log("system arch details: \n pointer size: %x", sizeof(char *));
+    ez_log("size of intL %x", sizeof(int));
     // not yet implemented
     // ez_queue_init();
     // ez_task_init();
     ez_mem_init();
     uint8_t *ptr = kmalloc(3);
+    if (ptr != NULL) {
+        ez_log(" kmalloc successful allocated %x bytes with addr %p", 3, ptr);
+    }
     return;
 }
 
@@ -26,5 +34,7 @@ void ez_system_init(void) {
      * CPU clock to optimal value here
      * should go to bsp specific implementation
      */
+    __uart_start(LOW_BR, USART1);
+    ez_log("-----------EZ SYSTEM INIT CALLED ---------------");
     return;
 }

@@ -7,7 +7,7 @@ is_stdlib=false
 output_file=ezRTOS
 obj_copy=arm-none-eabi-objcopy
 target_board=stm32f103x
-
+make_src_root=$(shell pwd)
 .DEFAULT_GOAL := all
 
 
@@ -38,7 +38,7 @@ EZ_BSP_UART_INCS = bsp/$(target_board)/uart/inc
 EZ_BSP_GPIO_INCS = bsp/$(target_board)/gpio/inc
 
 EZ_BSP_ALL_INC_DIRS += $(EZ_BSP_UART_INCS)\
-					$(EZ_BSP_GPIO_INCS)
+						$(EZ_BSP_GPIO_INCS)
 
 EZ_BSP_INC_FLAGS = $(addprefix -I,$(EZ_BSP_ALL_INC_DIRS))
 
@@ -51,14 +51,16 @@ export c_flags
 export cc_flags
 export cpu_name
 export target_board
-export EZ_BSP_ALL_INCS
-
+export EZ_BSP_INC_FLAGS
+export EZ_BSP_ALL_INC_DIRS
+export make_src_root
 
 $(warning "----------------------")
 $(warning "cleaning all files")
 
 clean:
 	$(MAKE) -C ez_uKernel clean_ez_uKernel_components
+	$(MAKE) -C bsp/$(target_board) clean_bsp
 	rm -rf *.o *.elf *.bin
 	exit 0;
 $(warning "----------------------")
@@ -88,8 +90,7 @@ $(warning "----------------------")
 $(warning "building all c source files")
 $(warning "----------------------")
 all_c_sources.o:
-	$(cc) $(cc_flags) $(c_flags) -I $(main_inc_dirs)\
-		$(EZ_BSP_INC_FLAGS) -c   $(c_sources) -o all_c_sources.o
+	$(cc) $(cc_flags) $(c_flags) -I $(main_inc_dirs) -c   $(c_sources) -o all_c_sources.o
 
 #-------------------------------------
 #  Build the all files to elf
