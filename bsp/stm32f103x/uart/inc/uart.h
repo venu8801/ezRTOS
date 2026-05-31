@@ -1,5 +1,6 @@
 /**
  * File: uart.h
+ * Reference: STM32 Technical reference manual
  * 
  */
 

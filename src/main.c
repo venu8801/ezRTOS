@@ -9,8 +9,8 @@
 int main(void) {
     ez_system_init();
     ez_kernel_init();
-    int i = 0;
-    while(i) {
+    volatile int i = 0;
+    while(true) {
         ez_log("idiling %s()..here ...", __func__);
         __usleep(10000);
         i += 1;
