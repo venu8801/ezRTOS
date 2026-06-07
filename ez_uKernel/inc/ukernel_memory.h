@@ -1,3 +1,11 @@
+/**
+ * File: ukernel_memory.h
+ * Copyright (c) 2026 Venu Gopal A. All rights reserved.
+ * Author: Venu Gopal A
+ * Email: venu.ark.prasad@gmail.com
+ * @brief: Header file for kernel heap metadata and memory APIs.
+ */
+
 #ifndef _UKERNEL_MEM_H_
 #define _UKERNEL_MEM_H_
 #include <stdint.h>

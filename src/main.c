@@ -1,4 +1,12 @@
 
+/**
+ * File: main.c
+ * Copyright (c) 2026 Venu Gopal A. All rights reserved.
+ * Author: Venu Gopal A
+ * Email: venu.ark.prasad@gmail.com
+ * @brief: Application entry point for ezRTOS startup.
+ */
+
 #include <stdio.h>
 #include <stdbool.h>
 #include <ukernel.h>
@@ -20,5 +28,4 @@ int main(void) {
     
     return 0; // should never come here ideally
 }
-
 

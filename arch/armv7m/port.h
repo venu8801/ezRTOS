@@ -1,8 +1,9 @@
 /**
- * file: port.h
- * author: Venu Gopal Atchyutanna
- * email: venu.ark.prasad@gmail.com
- *
+ * File: port.h
+ * Copyright (c) 2026 Venu Gopal A. All rights reserved.
+ * Author: Venu Gopal A
+ * Email: venu.ark.prasad@gmail.com
+ * @brief: Header file for ARMv7-M port definitions.
  */
 
 

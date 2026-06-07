@@ -1,3 +1,9 @@
+# File: ez_uKernel/tasks/Makefile
+# Copyright (c) 2026 Venu Gopal A. All rights reserved.
+# Author: Venu Gopal A
+# Email: venu.ark.prasad@gmail.com
+# @brief: Build rules for kernel task sources.
+
 # sub directory make file to compile the tasks
 # level fucntions
 #

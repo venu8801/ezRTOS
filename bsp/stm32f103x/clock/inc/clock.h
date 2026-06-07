@@ -1,9 +1,9 @@
 /**
- *
  * File: clock.h
- * Author: Venu Gopal Atchyutanna
+ * Copyright (c) 2026 Venu Gopal A. All rights reserved.
+ * Author: Venu Gopal A
  * Email: venu.ark.prasad@gmail.com
- *
+ * @brief: Header file for STM32F103x clock register definitions.
  */
 #include <stdint.h>
 

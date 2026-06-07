@@ -1,8 +1,9 @@
 /**
  * File: ezlogger.c
- * Brief: Generic logging function for ezRTOS kernel
- * Author: Venu Gopal Atchyutanna
+ * Copyright (c) 2026 Venu Gopal A. All rights reserved.
+ * Author: Venu Gopal A
  * Email: venu.ark.prasad@gmail.com
+ * @brief: Generic logging function for ezRTOS kernel.
  */
 
 #include <ezlog.h>
@@ -146,4 +147,3 @@ int16_t __printk(const char *str, ...) {
     __usart_put_char('\n', USART1);
     return i + 1;
 }
-

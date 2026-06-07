@@ -1,3 +1,11 @@
+<!--
+File: README
+Copyright (c) 2026 Venu Gopal A. All rights reserved.
+Author: Venu Gopal A
+Email: venu.ark.prasad@gmail.com
+@brief: Project prerequisites and build instructions for ezRTOS.
+-->
+
 Prerequisites:
 
 1. Make

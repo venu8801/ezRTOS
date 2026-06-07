@@ -1,6 +1,8 @@
 /**
  * File: ez_kernel_main.c
- * Author: Venu Gopal Atchyutanna @venu8801
+ * Copyright (c) 2026 Venu Gopal A. All rights reserved.
+ * Author: Venu Gopal A
+ * Email: venu.ark.prasad@gmail.com
  *
  * @brief: This file contains the entry points of
  * MCUs system initializations and kernel initializations

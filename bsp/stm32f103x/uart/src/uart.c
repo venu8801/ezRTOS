@@ -1,7 +1,9 @@
 /**
  * File: uart.c
- * Author: Venu Gopal Atchyutanna
+ * Copyright (c) 2026 Venu Gopal A. All rights reserved.
+ * Author: Venu Gopal A
  * Email: venu.ark.prasad@gmail.com
+ * @brief: UART driver implementation for STM32F103x.
  */
 
 #include <uart.h>

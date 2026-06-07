@@ -1,7 +1,10 @@
 /**
  * File: uart.h
+ * Copyright (c) 2026 Venu Gopal A. All rights reserved.
+ * Author: Venu Gopal A
+ * Email: venu.ark.prasad@gmail.com
  * Reference: STM32 Technical reference manual
- * 
+ * @brief: Header file for STM32F103x UART registers and APIs.
  */
 
 
@@ -125,5 +128,4 @@ void __usart_put_char(char input, usart_reg_t * reg_ptr);
 
 
 #endif // __UART_H__
-
 

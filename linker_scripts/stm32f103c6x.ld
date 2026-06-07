@@ -1,3 +1,11 @@
+/*
+ * File: stm32f103c6x.ld
+ * Copyright (c) 2026 Venu Gopal A. All rights reserved.
+ * Author: Venu Gopal A
+ * Email: venu.ark.prasad@gmail.com
+ * @brief: Linker script for STM32F103C6x flash and RAM layout.
+ */
+
 ENTRY(Reset_Handler)
 
 MEMORY
@@ -55,4 +63,3 @@ SECTIONS
 
     _estack = ORIGIN(RAM) + LENGTH(RAM);
 }
- 
