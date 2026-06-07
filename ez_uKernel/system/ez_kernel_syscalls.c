@@ -8,7 +8,7 @@
 #include <stdint.h>
 #include <stddef.h>
 #include <ukernel_memory.h>
-
+#include <ez_syscalls.h>
 
 void _exit(int pid) {
     (void)pid;
@@ -22,6 +22,10 @@ void *kmalloc(uint32_t alloc_size) {
     return __ez_mem_allocator(alloc_size);
 }
 
+void ez_svc_handler(void) {
+    ez_log("Svc handler called");
+    return;
+}
 void * _sbrk(uint32_t memory) {
     extern uint8_t __ez_heap_end__; /* Symbol defined in the linker script */
     extern uint8_t _estack; /* Symbol defined in the linker script */

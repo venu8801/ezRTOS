@@ -106,7 +106,8 @@ UsageFault_Handler:
 .weak SVC_Handler
 .type SVC_Handler, %function
 SVC_Handler:
-    b .
+    bl ez_svc_handler
+    bx lr
 
 .weak DebugMon_Handler
 .type DebugMon_Handler, %function
@@ -121,7 +122,10 @@ PendSV_Handler:
 .weak SysTick_Handler
 .type SysTick_Handler, %function
 SysTick_Handler:
-    b .
+    push {lr}
+    bl ez_systick_hanlder
+    pop {lr}
+    bx lr
 
 // Peripheral handlers - all weak and default to infinite loop
 .weak WWDG_IRQHandler
