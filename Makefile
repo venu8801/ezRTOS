@@ -28,6 +28,8 @@ c_flags = -Wall \
 
 main_inc_dirs += ez_uKernel/inc
 
+arch_armv7_incs = arch/armv7m
+
 c_sources += src/main.c\
 
 asm_sources += arch/$(arch)/startup.S\
@@ -90,7 +92,8 @@ $(warning "----------------------")
 $(warning "building all c source files")
 $(warning "----------------------")
 all_c_sources.o:
-	$(cc) $(cc_flags) $(c_flags) -I $(main_inc_dirs) -c   $(c_sources) -o all_c_sources.o
+	$(cc) $(cc_flags) $(c_flags) -I $(main_inc_dirs)\
+		-I $(arch_armv7_incs) -c   $(c_sources) -o all_c_sources.o
 
 #-------------------------------------
 #  Build the all files to elf
