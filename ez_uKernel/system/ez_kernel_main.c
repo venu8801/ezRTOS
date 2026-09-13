@@ -1,6 +1,8 @@
 /**
  * File: ez_kernel_main.c
- * Author: Venu Gopal Atchyutanna @venu8801
+ * Copyright (c) 2026 Venu Gopal A. All rights reserved.
+ * Author: Venu Gopal A
+ * Email: venu.ark.prasad@gmail.com
  *
  * @brief: This file contains the entry points of
  * MCUs system initializations and kernel initializations
@@ -36,6 +38,7 @@ void ez_system_init(void)
      * CPU clock to optimal value here
      * should go to bsp specific implementation
      */
+    __uart_init();
     __uart_start(LOW_BR, USART1);
     ez_log("-----------EZ SYSTEM INIT CALLED ---------------");
     return;

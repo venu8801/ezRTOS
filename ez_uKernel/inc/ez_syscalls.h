@@ -1,7 +1,9 @@
 /**
- * File: ukernel.h - Micro kernel header for ez RTOS
- * Author: Venu Gopal Atchyutanna
+ * File: ez_syscalls.h
+ * Copyright (c) 2026 Venu Gopal A. All rights reserved.
+ * Author: Venu Gopal A
  * Email: venu.ark.prasad@gmail.com
+ * @brief: Header file for ezRTOS system call APIs.
  */
 
 
@@ -14,5 +16,5 @@
 
 void *kmalloc(uint32_t alloc_size);
 
-void __usleep(unsigned long);
+void __usleep(uint32_t msec);
 #endif // _U_SYSCALLS_H_

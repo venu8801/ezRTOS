@@ -1,4 +1,8 @@
-# upper make file of ez kernel
+# File: ez_uKernel/Makefile
+# Copyright (c) 2026 Venu Gopal A. All rights reserved.
+# Author: Venu Gopal A
+# Email: venu.ark.prasad@gmail.com
+# @brief: Build rules for ezRTOS kernel components.
 
 $(warning -------------- Building EZ uKernel Components ---------------------)
 

@@ -1,5 +1,6 @@
 /**
  * File: syscall.c
+ * Copyright (c) 2026 Venu Gopal A. All rights reserved.
  * Author: Venu Gopal A
  * Email: venu.ark.prasad@gmail.com
  * @brief: Generic system call implementations for C Run-Time
@@ -9,6 +10,8 @@
 #include <stddef.h>
 #include <ukernel_memory.h>
 #include <ez_syscalls.h>
+
+extern volatile uint64_t g_systicks_counter;
 
 void _exit(int pid) {
     (void)pid;
@@ -22,10 +25,31 @@ void *kmalloc(uint32_t alloc_size) {
     return __ez_mem_allocator(alloc_size);
 }
 
-void ez_svc_handler(void) {
-    ez_log("Svc handler called");
+void ez_svc_handler(uint32_t *svc_args) {
+  unsigned int svc_number;
+  /*
+  * Stack contains:
+  * r0, r1, r2, r3, r12, r14, the return address and xPSR
+  * First argument (r0) is svc_args[0]
+  */
+  svc_number = ((char *)svc_args[6])[-2];
+  ez_log("svc number: %d", svc_number);
+  switch( svc_number )
+  {
+    case 1:
+      break;
+    case 2:
+        break;
+    case 3:
+        // trigger pendSV
+        //pend_sv_request();
+    default:
+        ez_log("unknown svc call\n");
+        break;
+  }
     return;
 }
+
 void * _sbrk(uint32_t memory) {
     extern uint8_t __ez_heap_end__; /* Symbol defined in the linker script */
     extern uint8_t _estack; /* Symbol defined in the linker script */
@@ -64,9 +88,10 @@ void delay(void)
 
 void __usleep(uint32_t msec)
 {
-    volatile uint64_t i;
-    for (i = 0; i < ((uint64_t)msec * 1000ULL); i++) {
-        __asm volatile ("nop");
+    uint64_t start_tick = g_systicks_counter;
+
+    while ((g_systicks_counter - start_tick) < msec) {
+        __asm volatile ("wfi");
     }
 }
 

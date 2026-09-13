@@ -1,11 +1,14 @@
 /**
- * file: port.h
- * author: Venu Gopal Atchyutanna
- * email: venu.ark.prasad@gmail.com
- *
+ * File: port.h
+ * Copyright (c) 2026 Venu Gopal A. All rights reserved.
+ * Author: Venu Gopal A
+ * Email: venu.ark.prasad@gmail.com
+ * @brief: Header file for ARMv7-M port definitions.
  */
 
-
+/**
+ * 
+ */
 
 #ifndef __SYSTICK_ARMV7M_H__
 #define __SYSTICK_ARMV7M_H__
@@ -13,10 +16,18 @@
 
 typedef volatile uint32_t __u32_v;
 /* register address for System Control Space on ARM Cortex M3 */
-#define SYST_CSR_REG 0xE000E010 /* Systick control and status register */
-#define SYST_RVR_REG 0xE000E014 /* Systick reload value register */
-#define SYST_CVR_REG 0xE000E018
-#define SYST_CALIB_REG 0xE000E01C
+ /* Systick control and status register */
+#define SYST_CSR_REG                 0xE000E010
+#define SYST_RVR_REG                 0xE000E014 /* Systick reload value register */
+#define SYST_CVR_REG                 0xE000E018
+#define SYST_CALIB_REG               0xE000E01C
+#define CPUID_REG_BASE               0xE000ED00
+#define ICSR_REG_BASE                0xE000ED04
+#define VTOR_REG_BASE                0xE000ED08
+#define AIRCR_REG_BASE               0xE000ED0C
+#define CCR_REG_BASE                 0xE000ED14
+#define SYSTICK_RELOAD_1MS_8MHZ      7999U
+
 
 typedef struct systick {
   __u32_v SYST_CSR;
@@ -25,7 +36,7 @@ typedef struct systick {
   __u32_v SYST_CALIB;
 } __attribute__((packed)) systick_reg_t;
 
-systick_reg_t * syst_scs_ptr = (systick_reg_t *) SYST_CSR_REG;
+systick_reg_t * syst_scs_ptr = ((systick_reg_t *) SYST_CSR_REG);
 
 #define SYSTICK_ENABLE() (*(volatile uint32_t *)SYST_CSR_REG |= 1U)
 
@@ -39,7 +50,7 @@ systick_reg_t * syst_scs_ptr = (systick_reg_t *) SYST_CSR_REG;
 
 static inline void systick_init() {
   // load the value
-  SYSTICK_SET_RVR(71999);
+  SYSTICK_SET_RVR(SYSTICK_RELOAD_1MS_8MHZ);
 
   (*(uint32_t *)SYST_CVR_REG) = 0;
   // set the internal clock as clock source
@@ -48,10 +59,12 @@ static inline void systick_init() {
 
   // enable the systick register
   SYSTICK_ENABLE();
+  ez_log("syst scs base address :%p - macro: %p", syst_scs_ptr, SYST_CSR_REG);
   ez_log("syst_csr :%p ", syst_scs_ptr->SYST_CSR);
   ez_log("syst_rvr :%p ", syst_scs_ptr->SYST_RVR);
   ez_log("syst_cvr :%p ", syst_scs_ptr->SYST_CVR);
   return;
 }
+
 
 #endif
