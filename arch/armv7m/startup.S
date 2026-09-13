@@ -109,8 +109,11 @@ UsageFault_Handler:
 .weak SVC_Handler
 .type SVC_Handler, %function
 SVC_Handler:
-    bl ez_svc_handler
-    bx lr
+    tst lr, #4
+    ite eq
+    mrseq r0, msp
+    mrsne r0, psp
+    b ez_svc_handler
 
 .weak DebugMon_Handler
 .type DebugMon_Handler, %function

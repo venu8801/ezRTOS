@@ -38,6 +38,7 @@ void ez_system_init(void)
      * CPU clock to optimal value here
      * should go to bsp specific implementation
      */
+    __uart_init();
     __uart_start(LOW_BR, USART1);
     ez_log("-----------EZ SYSTEM INIT CALLED ---------------");
     return;

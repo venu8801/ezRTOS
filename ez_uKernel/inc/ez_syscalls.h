@@ -16,5 +16,5 @@
 
 void *kmalloc(uint32_t alloc_size);
 
-void __usleep(unsigned long);
+void __usleep(uint32_t msec);
 #endif // _U_SYSCALLS_H_

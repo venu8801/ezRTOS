@@ -12,7 +12,18 @@ ez_uKernel_uart_components:
 clean_uart:
 	$(MAKE) -C uart clean
 
+#----------------clock driver component-------------
+ez_uKernel_clock_components:
+	$(MAKE) -C clock
+clean_clock:
+	$(MAKE) -C clock clean
 
-ez_uKernel_bsp_components: ez_uKernel_uart_components
+#----------------gpio driver component-------------
+ez_uKernel_gpio_components:
+	$(MAKE) -C gpio
+clean_gpio:
+	$(MAKE) -C gpio clean
 
-clean_bsp: clean_uart
+ez_uKernel_bsp_components: ez_uKernel_uart_components ez_uKernel_clock_components ez_uKernel_gpio_components
+
+clean_bsp: clean_uart clean_clock clean_gpio

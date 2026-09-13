@@ -19,10 +19,9 @@ kernel_inc_dirs += ../inc
 local_inc_dirs += ./inc
 bsp_inc_flags += $(addprefix -I$(make_src_root)/,$(EZ_BSP_ALL_INC_DIRS))
 
-
 compile_tasks_sources:
 	$(cc) -c $(cc_flags) $(c_flags) -I $(kernel_inc_dirs) \
-	$(bsp_inc_flags) -I $(local_inc_dirs) $(c_tasks_sources)
+		$(EZ_C_MACRO_DEFS) $(bsp_inc_flags) -I $(local_inc_dirs) $(c_tasks_sources)
 
 
 clean:

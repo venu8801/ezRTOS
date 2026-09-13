@@ -10,11 +10,14 @@ $(warning --- compiling the [BSP] USART component sources ---)
 
 c_usart_sources += $(wildcard src/*c)
 
-uart_bsp_inc_dirs += ./inc
+uart_bsp_inc_dirs += ./inc\
+					../clock/inc\
+					../gpio/inc
 
+uart_inc_flags := $(addprefix -I, $(uart_bsp_inc_dirs))
 
 compile_bsp_uart_sources:
-	$(cc) -c $(cc_flags) $(c_flags) -I $(uart_bsp_inc_dirs) $(c_usart_sources)
+	$(cc) -c $(cc_flags) $(c_flags) $(uart_inc_flags) $(c_usart_sources)
 
 
 clean:
