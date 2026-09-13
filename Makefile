@@ -48,6 +48,8 @@ main_inc_flags := $(addprefix -I,$(main_inc_dirs))
 
 arch_armv7_incs = arch/armv7m
 
+arch_armv7_incs = arch/armv7m
+
 c_sources += src/main.c\
 
 asm_sources += arch/$(arch)/startup.S\
