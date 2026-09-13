@@ -10,7 +10,7 @@
 #ifndef _U_KERNEL_H_
 #define  _U_KERNEL_H_
 #include <stdint.h>
-
+#include <port.h>
 
 void ez_kernel_init(void);
 

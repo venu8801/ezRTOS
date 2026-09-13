@@ -34,6 +34,7 @@ int main(void) {
     if ((ret = register_task(sample_task, task_attr)), ret != TASK_INIT_SUCCESS) {
         ez_log("creating a task failed with error %d", ret);
     }
+    ez_log("task registration successful");
     //ez_scheduler_init();
     while(true) {
         ez_log("idiling %s()..here ...systick: %u", __func__, (uint32_t)g_systicks_counter);

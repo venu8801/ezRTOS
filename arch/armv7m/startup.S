@@ -123,7 +123,10 @@ DebugMon_Handler:
 .weak PendSV_Handler
 .type PendSV_Handler, %function
 PendSV_Handler:
-    b .
+    push {lr}
+    bl ez_pendSVC_handler
+    pop {lr}
+    bx lr
 
 .weak SysTick_Handler
 .type SysTick_Handler, %function

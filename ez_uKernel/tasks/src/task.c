@@ -10,6 +10,7 @@
 #include <ez_syscalls.h>
 #include <stdbool.h>
 #include <stdio.h>
+#include <port.h>
 
 volatile uint64_t g_systicks_counter;
 ez_task_t g_task_list[MAX_TASK_LIST_SIZE];
@@ -25,9 +26,26 @@ bool is_list_full() {
     return false;
 }
 
+void __pendSV_request() {
+    TRIGGER_PENDSV();
+}
+
+bool is_list_empty() {
+}
+
+void ez_pendSVC_handler(void) {
+    return;
+}
+
+int8_t __systick_handler(void) {
+    bool execute_idle = is_list_empty() ?
+            true : false;
+    
+}
 void ez_systick_hanlder(void) {
   //ez_log("systick handler triggered: %u", g_systicks_counter);
   g_systicks_counter++;
+  __pendSV_request();
   return;
 }
 
@@ -38,6 +56,7 @@ void * idle_task_handler(void *args) {
   }
 }
 
+
 int32_t register_task(ez_task_hdlr_t task_to_add , taskHandlerAttr task_attr) {
     int32_t ret = TASK_INIT_FAIL;
     if (is_list_full()) {
@@ -45,10 +64,10 @@ int32_t register_task(ez_task_hdlr_t task_to_add , taskHandlerAttr task_attr) {
         goto exit;
     }
 
-    ez_task_t current_task = {NULL,
-                            task_attr,
-                            TASK_STATE_WAITING,
-                            task_to_add
+    ez_task_t current_task = {
+                            .task_attrs = task_attr,
+                            .task_state = TASK_STATE_WAITING,
+                            .task_hdlr = task_to_add
                             };
     g_task_list[g_list_attr.end++] = current_task;
     ez_log("task registration successful with priority: %d", task_attr.priority);
@@ -56,5 +75,3 @@ int32_t register_task(ez_task_hdlr_t task_to_add , taskHandlerAttr task_attr) {
 exit:
     return ret;
 }
-
-

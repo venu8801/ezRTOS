@@ -15,11 +15,33 @@
 #include <stddef.h>
 #include <ez_syscalls.h>
 
+char *get_cpu_name(uint16_t processor_Id) {
+    switch(processor_Id) {
+        case 0xC23:
+            return "Cortex-M3";
+        default:
+            return "Unknown";
+    }
+}
+
+char *get_cpu_implementer(uint16_t implementer_id) {
+    switch (implementer_id) {
+        case 0x41:
+            return "ARM";
+        default:
+            return "Unkown";
+    }
+}
+
 void ez_kernel_init(void)
 {
-    ez_log("-----------EZ KERNEL INIT CALLED ---------------");
-    ez_log("system arch details: \n pointer size: %x", sizeof(char *));
-    ez_log("size of int %x", sizeof(int));
+    ez_log("-----------EZ KERNEL INIT ---------------");
+    ez_log("Starting EZ Kernel")
+    ez_log("CPU Revision        : %x", GET_PROCESSOR_REVISION);
+    ez_log("CPU                 : %s", get_cpu_name(GET_PROCESSOR_PARTNO));
+    ez_log("CPU Variant         : %x", GET_PROCESSOR_VARIANT);
+    ez_log("CPU Implementer     : %s", get_cpu_implementer(GET_PROCESSOR_IMPLEMENTER));
+    ez_log("system arch: %d-bit", sizeof(char *) * 8);
     // not yet implemented
     // ez_queue_init();
     // ez_task_init();

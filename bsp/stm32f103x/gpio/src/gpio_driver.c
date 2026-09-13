@@ -7,6 +7,7 @@
  */
 
 #include <gpio.h>
+#include <stddef.h>
 
 #define GPIO_PIN_COUNT             16U
 #define GPIO_CFG_BITS_PER_PIN      4U
@@ -32,7 +33,7 @@ static gpio_reg_base_t *gpio_get_port(gpio_port_t port_id)
     case GPIO_PORT_G:
         return (gpio_reg_base_t *)GPIO_REG_BASE_PORT_G;
     default:
-        return 0;
+        return NULL;
     }
 }
 
@@ -55,7 +56,7 @@ int8_t gpio_config_reg(gpio_attr_t req)
     __u32 pin_mask;
     __u32 pin_index;
 
-    if (port == 0) {
+    if (port == NULL) {
         return -1;
     }
 

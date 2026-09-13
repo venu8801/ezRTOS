@@ -28,6 +28,7 @@ typedef struct task_handler_attributes {
 
 typedef struct {
     void *pc;
+    void* lr;
     taskHandlerAttr task_attrs;
     task_state_t task_state;
     ez_task_hdlr_t task_hdlr;

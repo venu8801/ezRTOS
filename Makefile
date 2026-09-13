@@ -8,7 +8,6 @@
 arch=armv7m
 cc=arm-none-eabi-gcc
 cpu_name=cortex-m3
-#mcu_family=stm32f103c6x
 is_stdlib=false
 output_file=ezRTOS
 obj_copy=arm-none-eabi-objcopy
@@ -66,10 +65,12 @@ EZ_C_MACRO_DEFS += -DMAX_TASK_LIST_SIZE=20
 EZ_BSP_UART_INCS := bsp/$(target_board)/uart/inc
 EZ_BSP_GPIO_INCS := bsp/$(target_board)/gpio/inc
 EZ_BSP_CLOCK_INCS := bsp/$(target_board)/uart/inc
+EZ_BSP_CPU_PORT_INCS := arch/armv7m
 
 EZ_BSP_ALL_INC_DIRS += $(EZ_BSP_UART_INCS)\
 						$(EZ_BSP_GPIO_INCS)\
-						$(EZ_BSP_CLOCK_INCS)
+						$(EZ_BSP_CLOCK_INCS)\
+						$(EZ_BSP_CPU_PORT_INCS)
 
 EZ_BSP_INC_FLAGS = $(addprefix -I,$(EZ_BSP_ALL_INC_DIRS))
 
