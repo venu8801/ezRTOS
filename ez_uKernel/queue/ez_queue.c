@@ -1,8 +1,9 @@
 /*
  * File: ez_queue.c
- * Author: Venu Gopal Atchyutanna
+ * Copyright (c) 2026 Venu Gopal A. All rights reserved.
+ * Author: Venu Gopal A
  * Email: venu.ark.prasad@gmail.com
- * Brief: Queue implementation for the ez RTOS.
+ * @brief: Queue implementation for the ez RTOS.
  */
 
 
@@ -30,4 +31,3 @@ ez_queue_error_t ez_queue_list_init(void) {
 exit:
     return ret;
 }
-

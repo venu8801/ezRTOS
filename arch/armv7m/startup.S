@@ -1,7 +1,10 @@
 /**
-        File: STM32F103 Cortex M3 Startup Assembly file
-        Author: Venu Gopal Atchyutanna
-        Taken as reference from STM32 Cube IDE startup script
+ * File: startup.S
+ * Copyright (c) 2026 Venu Gopal A. All rights reserved.
+ * Author: Venu Gopal A
+ * Email: venu.ark.prasad@gmail.com
+ * @brief: STM32F103 Cortex-M3 startup assembly and vector table.
+ * Reference: STM32CubeIDE startup script.
  */
   .syntax unified
   .cpu cortex-m3 // cpu core is cortex m3
@@ -106,8 +109,11 @@ UsageFault_Handler:
 .weak SVC_Handler
 .type SVC_Handler, %function
 SVC_Handler:
-    bl ez_svc_handler
-    bx lr
+    tst lr, #4
+    ite eq
+    mrseq r0, msp
+    mrsne r0, psp
+    b ez_svc_handler
 
 .weak DebugMon_Handler
 .type DebugMon_Handler, %function
@@ -390,4 +396,3 @@ LoopFillZerobss:
     b .
 
 .size Reset_Handler, .-Reset_Handler
-

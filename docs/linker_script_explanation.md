@@ -1,3 +1,11 @@
+<!--
+File: linker_script_explanation.md
+Copyright (c) 2026 Venu Gopal A. All rights reserved.
+Author: Venu Gopal A
+Email: venu.ark.prasad@gmail.com
+@brief: Explanation of the STM32F103C6x linker script.
+-->
+
 # Linker Script Explanation
 
 This document explains every line of the `stm32f103c6x.ld` linker script used for your STM32 RTOS project. The linker script defines memory layout and controls how all compiled sections are placed in the final binary.

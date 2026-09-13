@@ -1,7 +1,10 @@
 /**
  * File: uart.h
+ * Copyright (c) 2026 Venu Gopal A. All rights reserved.
+ * Author: Venu Gopal A
+ * Email: venu.ark.prasad@gmail.com
  * Reference: STM32 Technical reference manual
- * 
+ * @brief: Header file for STM32F103x UART registers and APIs.
  */
 
 
@@ -30,14 +33,14 @@ typedef uint32_t __u32;
  * a USART GPIO Register on Stm32
  */
 typedef struct usart_reg {
-    __u32 USART_SR;  // status register
-    __u32 USART_DR;  // data register 0:8 bits are 1 byte UART out
-    __u32 USART_BRR; // Baud Rate Generator register
-    __u32 USART_CR1;  // control 1
-    __u32 USART_CR2;  // control 2
-    __u32 USART_CR3;  // control 3
-    __u32 USART_GTPR;
-} __attribute__((packed)) usart_reg_t;
+    volatile __u32 USART_SR;   // status register
+    volatile __u32 USART_DR;   // data register 0:8 bits are 1 byte UART out
+    volatile __u32 USART_BRR;  // Baud Rate Generator register
+    volatile __u32 USART_CR1;  // control 1
+    volatile __u32 USART_CR2;  // control 2
+    volatile __u32 USART_CR3;  // control 3
+    volatile __u32 USART_GTPR;
+} usart_reg_t;
 
 /**
  * Fractional baud rate generation
@@ -125,5 +128,3 @@ void __usart_put_char(char input, usart_reg_t * reg_ptr);
 
 
 #endif // __UART_H__
-
-
